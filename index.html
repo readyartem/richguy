@@ -53,20 +53,12 @@
                 console.error("Failed to copy", err);
             });
             const btn = document.getElementById(id);
-            btn.style.opacity = 0;
-            setTimeout(() => {
-                btn.innerText = "COPIED";
-                btn.style.color = "#4ade80"; // Bright green
-                btn.style.opacity = 1;
-            }, 200);
+            btn.innerText = "COPIED";
+            btn.style.color = "#4ade80"; // Bright green
 
             setTimeout(() => {
-                btn.style.opacity = 0;
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.color = "";
-                    btn.style.opacity = 1;
-                }, 200);
+                btn.innerText = originalText;
+                btn.style.color = "";
             }, 2000);
         }
 
