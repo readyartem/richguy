@@ -1,0 +1,326 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ENTRY ANIMATIONS */
+@keyframes fadeInBg {
+    from { filter: brightness(0); transform: scale(1.05); }
+    to { filter: brightness(1); transform: scale(1); }
+}
+
+@keyframes slideDownNavbar {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popCenterBlockDesktop {
+    from { opacity: 0; transform: translate(-50%, 30px) scale(0.9); }
+    to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+@keyframes popCenterBlockMobile {
+    from { opacity: 0; transform: translateY(30px) scale(0.9); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes slideInRightDesktop {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes popRightBlockMobile {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: none; }
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    background-color: #2b2b36; /* Match dark theme */
+    overflow-x: hidden;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/bg.png');
+    background-size: cover;
+    background-position: center bottom;
+    z-index: 1;
+    image-rendering: pixelated; /* Crisp pixel art edges */
+    animation: fadeInBg 1.5s ease-out backwards;
+}
+
+.content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vw 4vw;
+    width: 100%;
+    animation: slideDownNavbar 0.8s ease-out 0.2s backwards;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2vw; /* Increased from 0.5vw */
+}
+
+.nav-logo {
+    height: clamp(24px, 3vw, 40px);
+    image-rendering: pixelated;
+}
+
+.nav-title {
+    font-size: clamp(14px, 1.5vw, 24px);
+    font-weight: normal;
+    letter-spacing: 0.2vw;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.nav-right {
+    display: flex;
+    gap: 2vw;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: clamp(10px, 1vw, 16px);
+    letter-spacing: 0.1vw;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
+    text-shadow: 2px 2px 0 #000;
+    display: inline-block;
+}
+
+.nav-link:hover {
+    color: #ff4d4d; /* Red color matching armchair, no glow */
+    text-shadow: 2px 2px 0 #000;
+    transform: translateY(-2px);
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Position blocks exactly over the background buildings */
+.center-block {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: clamp(300px, 40vw, 600px);
+    animation: popCenterBlockDesktop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s backwards;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vw;
+    margin-bottom: 2vw;
+    width: 100%;
+}
+
+.hero-guy {
+    width: clamp(40px, 6vw, 80px); /* Smaller size than before */
+    image-rendering: pixelated;
+}
+
+.main-title {
+    font-size: clamp(28px, 4vw, 56px);
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 0.2vw;
+}
+
+.subtitle {
+    font-family: 'Press Start 2P', cursive; /* Using pixel font as requested */
+    font-size: clamp(12px, 1.8vw, 24px);    /* Significantly larger */
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 3vw;
+    text-shadow: 2px 2px 0 #000;
+    line-height: 1.6;
+    max-width: 25ch; /* Naturally forces line break after $RICHGUY */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-size: clamp(12px, 1.2vw, 18px); /* Smaller sizes */
+    padding: 1.5vw 2.5vw;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+.btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.primary-btn {
+    width: 90%;
+    padding: clamp(12px, 1.5vw, 24px) 0;
+}
+
+/* RIGHT BLOCK (pump.fun & X) */
+.right-block {
+    position: absolute;
+    top: 52%;
+    right: 4vw; /* Aligned exactly to the right grid corresponding to the navbar padding */
+    left: auto;
+    transform: none;
+    display: flex;
+    flex-direction: column; /* Vertical stack as requested */
+    align-items: flex-end; /* Align right to match grid edge */
+    gap: 1.5vw;
+    animation: slideInRightDesktop 0.8s ease-out 0.8s backwards;
+}
+
+.secondary-btn {
+    padding: clamp(12px, 1.5vw, 24px) clamp(20px, 2.5vw, 40px);
+}
+
+.icon-btn {
+    padding: clamp(12px, 1.5vw, 24px);
+    width: clamp(40px, 4vw, 60px);
+    height: clamp(40px, 4vw, 60px);
+    font-size: clamp(14px, 1.5vw, 24px); /* Larger icon text */
+}
+
+.mobile-extra-buttons {
+    display: none;
+}
+
+.mobile-ca {
+    display: none;
+}
+
+.desktop-ca {
+    display: block;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .background {
+        /* Shift background so left building "RICHGUY BUSINESS CENTER" is visible */
+        background-position: 20% bottom;
+    }
+
+    .navbar {
+        flex-direction: row; /* Keep header horizontal so CA button stays top right */
+        justify-content: space-between;
+        padding: 20px;
+    }
+    
+    .nav-left {
+        gap: 15px; /* Increase gap between logo and text on mobile */
+    }
+
+    .desktop-ca {
+        display: none; 
+    }
+
+    .mobile-ca {
+        display: block; /* Show CA short text on mobile top right */
+    }
+
+    .nav-title {
+        font-size: 14px;
+    }
+
+    .mobile-ca .nav-link {
+        font-size: 14px; /* Exact same size as RICHGUY title on mobile */
+    }
+
+    .main-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 40px; /* Offset to not underlap header */
+    }
+
+    .center-block {
+        position: static;
+        width: 90vw;
+        transform: none;
+        margin-bottom: 20px;
+        animation: popCenterBlockMobile 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s backwards;
+    }
+    
+    .title-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .right-block {
+        position: static;
+        flex-direction: row; /* Horizontal row on mobile, per request */
+        width: 100%;
+        align-items: center; /* Center them on mobile is usually best */
+        justify-content: center;
+        gap: 15px;
+        transform: none;
+        left: auto;
+        top: auto;
+        animation: popRightBlockMobile 0.8s ease-out 0.8s backwards;
+    }
+    
+    .btn {
+        padding: 15px 20px;
+        font-size: 14px;
+    }
+    
+    .icon-btn {
+        padding: 15px;
+        width: 50px;
+        height: 50px;
+    }
+}

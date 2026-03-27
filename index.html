@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$RICHGUY - Become Rich on Solana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-left">
+                <img src="assets/guy.png" alt="Richguy logo" class="nav-logo">
+                <span class="nav-title">$RICHGUY</span>
+            </div>
+            <div class="nav-right desktop-ca">
+                <a href="#" class="nav-link" id="ca-btn-desktop">CONTRACT ADDRESS</a>
+            </div>
+            <div class="nav-right mobile-ca">
+                <a href="#" class="nav-link" id="ca-btn-mobile">CONTRACT ADDRESS</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="center-block">
+                <div class="title-container">
+                    <img src="assets/guy.png" alt="Richguy char" class="hero-guy">
+                    <h1 class="main-title">$RICHGUY</h1>
+                </div>
+                <h2 class="subtitle">Become Rich with $RICHGUY on Solana</h2>
+                <div class="btn-container">
+                    <a href="https://pump.fun" target="_blank" class="btn primary-btn">BUY TOKEN</a>
+                </div>
+            </div>
+
+            <div class="right-block">
+                <a href="https://pump.fun" target="_blank" class="btn secondary-btn">PUMP.FUN</a>
+                <a href="https://x.com" target="_blank" class="btn icon-btn">X</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const contractAddress = "CONTRACT ADDRESS";
+
+        function copyCA(id, originalText) {
+            navigator.clipboard.writeText(contractAddress).catch(err => {
+                console.error("Failed to copy", err);
+            });
+            const btn = document.getElementById(id);
+            btn.style.opacity = 0;
+            setTimeout(() => {
+                btn.innerText = "COPIED";
+                btn.style.color = "#4ade80"; // Bright green
+                btn.style.opacity = 1;
+            }, 200);
+
+            setTimeout(() => {
+                btn.style.opacity = 0;
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.color = "";
+                    btn.style.opacity = 1;
+                }, 200);
+            }, 2000);
+        }
+
+        document.getElementById("ca-btn-desktop").addEventListener("click", (e) => {
+            e.preventDefault();
+            copyCA("ca-btn-desktop", "CONTRACT ADDRESS");
+        });
+
+        document.getElementById("ca-btn-mobile").addEventListener("click", (e) => {
+            e.preventDefault();
+            copyCA("ca-btn-mobile", "CONTRACT ADDRESS");
+        });
+    </script>
+</body>
+</html>
